@@ -457,7 +457,9 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-default" onclick="closeExportModal()">取消</button>
-      <button class="btn btn-primary" onclick="doExport()">导出</button>
+      <!-- 导出操作：两个按钮仅作 UI 占位，交互暂不接入（原 doExport() 逻辑保留备用） -->
+      <button class="btn btn-primary" type="button" id="btn-download" data-action="download">下载</button>
+      <button class="btn btn-default" type="button" id="btn-conditional-download" data-action="conditional-download">条件下载</button>
     </div>
   </div>
 </div>
@@ -832,6 +834,8 @@
     setTimeout(() => rows.forEach(r => { r.style.opacity = '1'; }), 400);
   }
 
+  // 预留逻辑：弹窗底部「下载」「条件下载」两个按钮当前暂不绑定交互，
+  // 后续接入时可复用本方法（读取已勾选字段 + 导出版本，触发对应下载）。
   function doExport() {
     const checkedFields = [];
     document.querySelectorAll('#field-grid input[type=checkbox]:checked').forEach(cb => {
